@@ -1,4 +1,39 @@
+#regLogContainer {
+  display: flex;
+  flex-direction: row;
+}
+#regLogContainer * {
+  display: block;
+}
+#registration-form,
+#logOut,
+#logLand {
+  display: none;
+}
 #registration-form,
 #login-form {
+  margin: 0 auto;
+}
+header {
+  margin: 20px 0 50px;
+  display: flex;
+  flex-direction: column;
+}
+#firstContainer {
+  display: flex;
+  width: 100%;
+}
+header img {
+  height: 10em;
+}
+header button {
+  height: 30px;
+  width: 100px;
+}
+#logOut {
+  display: none;
+}
+#adminNav,
+#simpleNav {
   display: none;
 }

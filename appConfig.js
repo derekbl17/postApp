@@ -7,6 +7,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebas
 const firebaseConfig = {
   apiKey: "AIzaSyC8NZ_3aT0NvHonMjwt-4fUNzC0Bv98dRU",
   authDomain: "post-board-12e75.firebaseapp.com",
+  databaseURL:
+    "https://post-board-12e75-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "post-board-12e75",
   storageBucket: "post-board-12e75.firebasestorage.app",
   messagingSenderId: "203373866845",
