@@ -1,13 +1,10 @@
-import { app } from "./appConfig.js";
-
 import {
-  getAuth,
-  createUserWithEmailAndPassword,
   onAuthStateChanged,
-} from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
+} from "./appConfig.js";
 
-import { auth } from "./submitRegFormBtn.js";
-import { authorizationFunc } from "./authorization.js";
+import { auth } from "./appConfig.js";
+import { authorizationFunc } from "./authorizationFunc.js";
+
+console.log("INITIAL CHECK");
 onAuthStateChanged(auth, authorizationFunc);
 
-export const mainContainer = document.getElementById("mainContainer");

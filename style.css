@@ -37,3 +37,10 @@ header button {
 #simpleNav {
   display: none;
 }
+#categoryList h5{
+  width:20rem;
+  display:inline;
+}
+.removeCategory{
+  background-color: red;
+}

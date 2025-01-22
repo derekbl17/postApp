@@ -1,5 +1,4 @@
-import { landLogBtn } from "./landingPageLogBtn.js";
-export const landRegBtn = document.getElementById("regLand");
+import { landLogBtn,landRegBtn } from "./dom.js";
 
 landRegBtn.addEventListener("click", (e) => {
   e.preventDefault();

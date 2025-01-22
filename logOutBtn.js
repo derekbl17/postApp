@@ -1,19 +1,20 @@
-export const logOutBtn = document.getElementById("logOut");
-import { landRegBtn } from "./landingPageRegBtn.js";
-import { landLogBtn } from "./landingPageLogBtn.js";
-import { signOut } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
+import { landRegBtn,landLogBtn,logOutBtn,logContainer } from "./dom.js";
 
-import { logContainer } from "./authorization.js";
-import { auth } from "./submitRegFormBtn.js";
+import { signOut,auth} from "./appConfig.js";
+
+
+
 logOutBtn.addEventListener("click", (e) => {
   e.preventDefault();
+  console.log("LOG OUT BUTTON");
+  
 
   signOut(auth)
     .then(() => {
-      landLogBtn.style.display = "block";
+      landLogBtn.style.display = "none";
       landRegBtn.style.display = "block";
       logContainer.style.display = "flex";
     })
     .catch((error) => {});
-  onAuthStateChanged(auth, authorizationFunc);
+  
 });

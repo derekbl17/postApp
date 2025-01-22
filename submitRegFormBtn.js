@@ -1,23 +1,15 @@
-import { authorizationFunc } from "./authorization.js";
-import { app } from "./appConfig.js";
-import {
-  getDatabase,
-  ref,
-  child,
-  get,
-  set,
-  update,
-} from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
+import { authorizationFunc } from "./authorizationFunc.js";
 
 import {
-  getAuth,
+  ref,
+  set,
+  auth,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
-} from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
+  database
+} from "./appConfig.js";
 
 const submitReg = document.getElementById("regSubmit");
-export const auth = getAuth();
-export const database = getDatabase(app);
 
 submitReg.addEventListener("click", (e) => {
   e.preventDefault();

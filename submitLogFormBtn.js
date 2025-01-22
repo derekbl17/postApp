@@ -1,17 +1,13 @@
-import { auth } from "./submitRegFormBtn.js";
-import { authorizationFunc } from "./authorization.js";
-
 import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  onAuthStateChanged,
   signInWithEmailAndPassword,
-  signOut,
-} from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
+  auth
+} from "./appConfig.js";
 
 const submitLog = document.getElementById("logSubmit");
 
 submitLog.addEventListener("click", (e) => {
+  console.log("LOG IN BUTTON");
+  
   e.preventDefault();
 
   const email = document.getElementById("logEmail").value;
@@ -32,5 +28,5 @@ submitLog.addEventListener("click", (e) => {
       const errorCode = error.code;
       const errorMessage = error.message;
     });
-  onAuthStateChanged(auth, authorizationFunc);
+  //onAuthStateChanged(auth, authorizationFunc);
 });
