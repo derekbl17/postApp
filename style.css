@@ -44,3 +44,6 @@ header button {
 .removeCategory{
   background-color: red;
 }
+#addPostForm *{
+  display:block;
+}
