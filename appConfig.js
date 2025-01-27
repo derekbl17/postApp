@@ -8,7 +8,8 @@ import {
   set,
   update,
   onValue,
-  remove
+  remove,
+  push
 } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
 
 import {
@@ -36,4 +37,4 @@ export const app = initializeApp(firebaseConfig);
 export const database = getDatabase(app);
 export const db = getDatabase()
 export const auth = getAuth(app);
-export { deleteUser,remove,onValue,signOut,signInWithEmailAndPassword,getDatabase, ref, child, get, set, update, createUserWithEmailAndPassword, onAuthStateChanged };
+export { push,deleteUser,remove,onValue,signOut,signInWithEmailAndPassword,getDatabase, ref, child, get, set, update, createUserWithEmailAndPassword, onAuthStateChanged };
