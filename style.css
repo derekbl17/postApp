@@ -21,6 +21,7 @@ header {
   margin: 20px 0 50px;
   display: flex;
   flex-direction: column;
+  position: sticky;
 }
 #firstContainer {
   display: flex;
@@ -93,4 +94,40 @@ header button {
 }
 #favBtn:hover{
   background-color: yellow;
+}
+#backdrop{
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.452);
+  z-index: 1;
+  width:100%;
+  height:100%;
+  left: 0;
+  backdrop-filter: blur(8px);
+}
+#commentForm{
+  position: absolute;
+  z-index: 2;
+  background: gray;
+  left:20%;
+  width: 60%;
+  padding: 10px;
+  margin-top: 20px;
+}
+.comment{
+  display: flex;
+  gap:5rem;
+  border-top: 1px solid black;
+  margin: 5px 0 0 0;
+}
+.comment p{
+  width:50%;
+}
+textarea{
+  max-width: 200px;
+  max-height: 100px;
+}
+
+button{
+  height:30px;
+  margin: auto;
 }
