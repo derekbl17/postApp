@@ -367,6 +367,10 @@ export const displayPosts = () => {
           // Delete button handler
           deleteBtn.addEventListener("click", (e) => {
             console.log("Delete");
+            if(window.confirm("Delete post. Are you sure?")){
+                remove(ref(db, `posts/${postId}/${subPostId}`))
+                .catch(error => console.error("Delete failed:", error));
+            }
           });
 
           postBtnContainer.append(editBtn, deleteBtn);
