@@ -1,6 +1,7 @@
 import { onValue,ref,db,auth, push, set } from "./appConfig.js";
 import { landLogBtn,landRegBtn,logOutBtn,logContainer,simpleNav,mainContainer,categoryArray } from "./dom.js"
 import { displayPosts } from "./displayPosts.js";
+import { createPostCard } from "./createPostCard.js";
 export const simpleViewFunc=()=>{
     landLogBtn.style.display = "none";
     landRegBtn.style.display = "none";
@@ -17,6 +18,7 @@ export const simpleViewFunc=()=>{
     // fetch and add categories from DB to category select in NAV
     onValue(ref(db, 'categories/'), (snapshot) => {
         const data = snapshot.val();
+        selectCategory.innerHTML = '<option value="0">All Categories</option>';
         for(let k in data){
             const option=document.createElement("option")
             option.innerText=k
@@ -26,30 +28,20 @@ export const simpleViewFunc=()=>{
     })
 
     // Target specific categories in NAV select
-    selectCategory.addEventListener("click",e =>{
-        mainContainer.innerHTML=""
-        displayPosts()
-        if (e.target.value!=0){
-            categoryArray.forEach(category=>{
-                console.log("are they even?",e.target.value==category);
-                console.log("target value:",e.target.value);
-                
-                
-                e.target.value == category ? document.querySelectorAll(`#postCard${e.target.value}`).forEach(card=>{
-                    console.log("match");
-                    
-                    card.style.display="block"
-                }) : document.querySelectorAll(`#postCard${category}`).forEach(card=>{
-                    console.log("NO match");
-                    
-                    card.style.display="none"
-                })
-                
-            })
-        }
-        console.log(e.target.value);
-    })
 
+    selectCategory.addEventListener("change", (e) => {
+        displayPosts()
+        const selectedCategory = e.target.value;
+        
+        // Show/hide posts based on category
+        document.querySelectorAll(".postCard").forEach(card => {
+            const cardCategory = card.querySelector("h5").textContent; // Adjust selector if needed
+            card.style.display = 
+                (selectedCategory === "0" || cardCategory === selectedCategory) 
+                ? "block" 
+                : "none";
+        });
+    });
     // Add post button
     addPost.addEventListener("click",(e)=>{
         mainContainer.innerHTML=""
@@ -129,7 +121,62 @@ export const simpleViewFunc=()=>{
         })
         form.append(postButton)
     })
+    //
+    //
+    favorites.addEventListener("click", (e) => {
+        console.log("favorites");
+        mainContainer.innerHTML = ''; // Clear existing content
+
+        // Fetch the current user's favorites
+        const favoritesRef = ref(db, `users/${auth.currentUser.uid}/favorites`);
+        onValue(favoritesRef, (favoritesSnapshot) => {
+            const favoritesData = favoritesSnapshot.val();
+            if (!favoritesData) {
+                mainContainer.innerHTML = '<p>No favorites found.</p>';
+                return;
+            }
+
+            // Fetch all posts
+            const postsRef = ref(db, 'posts/');
+            onValue(postsRef, (postsSnapshot) => {
+                const postsData = postsSnapshot.val();
+                if (!postsData) return;
+
+                // Filter posts that are in the user's favorites
+                Object.entries(postsData).forEach(([postId, posts]) => {
+                    Object.entries(posts).forEach(([subPostId, post]) => {
+                        if (favoritesData[subPostId]) {
+                            // Create and append the post card to the main container
+                            const postCard = createPostCard(post, subPostId, postId);
+                            mainContainer.append(postCard);
+                        }
+                    });
+                });
+            });
+        });
+    });
+
+    myPosts.addEventListener("click",(e)=>{
+        console.log("my Posts");
+        mainContainer.innerHTML = ''; // Clear existing content
+
+        // Fetch posts made by the current user
+        const userPostsRef = ref(db, `posts/${auth.currentUser.uid}`);
+        onValue(userPostsRef, (snapshot) => {
+            const userPostsData = snapshot.val();
+            if (!userPostsData) {
+                mainContainer.innerHTML = '<p>No posts found.</p>';
+                return;
+            }
+
+            // Display each post
+            Object.entries(userPostsData).forEach(([subPostId, post]) => {
+                const postCard = createPostCard(post, subPostId, auth.currentUser.uid);
+                mainContainer.append(postCard);
+            });
+        });
+    })
 
 
         
-    }
+}

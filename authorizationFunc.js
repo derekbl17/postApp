@@ -25,7 +25,7 @@ export const authorizationFunc = (user) => {
             console.log("ADMIN ACCESS GRANTED");
             adminView()
             adminNewCategoryFunc();
-          } else {
+          } else if(userRole==="simple") {
             console.log("Grey-suit");
             simpleViewFunc()
           }

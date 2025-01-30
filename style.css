@@ -131,3 +131,9 @@ button{
   height:30px;
   margin: auto;
 }
+#simpleNav *{
+  height: 30px;
+  width: 110px;
+  background: orange;
+  border: 1px solid black;
+}
