@@ -5,7 +5,6 @@ import {
   get,
 } from "./appConfig.js";
 
-import { adminNewCategoryFunc } from "./adminNewCategoryFunc.js";
 
 import { adminView } from "./adminPage.js";
 import { simpleViewFunc } from "./simpleView.js";
@@ -24,10 +23,12 @@ export const authorizationFunc = (user) => {
           if (userRole === "admin") {
             console.log("ADMIN ACCESS GRANTED");
             adminView()
-            adminNewCategoryFunc();
           } else if(userRole==="simple") {
             console.log("Grey-suit");
             simpleViewFunc()
+          } else{
+            alert("Your account has been blocked.")
+            return
           }
         } else {
           console.log("No data");
