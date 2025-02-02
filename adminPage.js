@@ -20,11 +20,7 @@ export const adminView=()=>{
     onValue(ref(db, 'categories/'), (snapshot) => {
     const data = snapshot.val();
     console.log(data);
-
     adminNewCategoryFunc()
-
-    
-    
 })
     newCategorytab.addEventListener("click",(e)=>{
         e.preventDefault()
@@ -61,10 +57,11 @@ export const adminView=()=>{
             const userBlockBtn=document.createElement("button")
             userBlockBtn.innerText='Block'
 
+            // sets user role to blocked
             userBlockBtn.addEventListener("click", (e) => {
                     e.preventDefault();
                     const userRef = ref(db, `users/${key}`);
-                    set(userRef, { ...data[key], role: "blocked" }) // Update the user's role to "blocked"
+                    set(userRef, { ...data[key], role: "blocked" }) // 
                         .then(() => {
                             alert(`User ${data[key].email} has been blocked.`);
                         })
@@ -76,6 +73,7 @@ export const adminView=()=>{
             userContainer.append(categoryName,userDelBtn,userBlockBtn)
             categoryListForm.append(userContainer)
 
+            // deletes user from database
             userDelBtn.addEventListener("click",(e)=>{
                 e.preventDefault()
                 remove(ref(db, 'users/'+key))

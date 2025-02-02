@@ -51,8 +51,6 @@ export function adminNewCategoryFunc() {
   
           categoryDelBtn.addEventListener("click",(e)=>{
               e.preventDefault()
-  
-              
               remove(ref(db, 'categories/'+key))
               .then(()=>{
                   alert(`Category ${key} removed.`)

@@ -28,5 +28,4 @@ submitLog.addEventListener("click", (e) => {
       const errorCode = error.code;
       const errorMessage = error.message;
     });
-  //onAuthStateChanged(auth, authorizationFunc);
 });

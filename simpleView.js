@@ -13,6 +13,10 @@ export const simpleViewFunc=()=>{
     const myPosts=document.getElementById("myPosts")
     const favorites=document.getElementById("favorites")
     const selectCategory=document.getElementById("selectCategory")
+    const searchPosts=document.getElementById("postSearch")
+    const searchPostsBtn=document.getElementById("postSearchBtn")
+
+
 
     displayPosts()
     // fetch and add categories from DB to category select in NAV
@@ -28,20 +32,28 @@ export const simpleViewFunc=()=>{
     })
 
     // Target specific categories in NAV select
-
-    selectCategory.addEventListener("change", (e) => {
-        displayPosts()
+    selectCategory.addEventListener("change", async (e) => {
+        await displayPosts()
         const selectedCategory = e.target.value;
         
         // Show/hide posts based on category
         document.querySelectorAll(".postCard").forEach(card => {
-            const cardCategory = card.querySelector("h5").textContent; // Adjust selector if needed
+            const cardCategory = card.querySelector("h5").textContent;
             card.style.display = 
                 (selectedCategory === "0" || cardCategory === selectedCategory) 
                 ? "block" 
-                : "none";
+                : "none"
         });
     });
+
+    searchPostsBtn.addEventListener("click",e=>{
+        e.preventDefault()
+        document.querySelectorAll(".postCard").forEach(card => {
+        card.innerText.includes(searchPosts.value) ? card.style.display="block" : card.style.display="none"
+        
+        })
+        
+    })
     // Add post button
     addPost.addEventListener("click",(e)=>{
         mainContainer.innerHTML=""
@@ -77,7 +89,7 @@ export const simpleViewFunc=()=>{
                         select.append(option)
                     }
                 })
-                //////// not so simple :DDDDDDDDDD
+                // add an ID based off category
                 select.id=`addPostField${x.slice(0,3)}`
                 label.setAttribute("for",select.id)
                 form.append(label,select)

@@ -78,7 +78,7 @@ export function createPostCard(post, subPostId, postId) {
             });
         });
 
-        // Real-time comments renderer
+        // Comments renderer
         const setupComments = () => {
             commentsListener = onValue(commentsRef, (commentsSnapshot) => {
                 const commentsData = commentsSnapshot.val();

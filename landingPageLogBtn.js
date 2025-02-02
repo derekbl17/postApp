@@ -3,9 +3,6 @@ import { landRegBtn ,landLogBtn} from "./dom.js";
 
 landLogBtn.addEventListener("click", (e) => {
   e.preventDefault();
-
-  console.log("log");
-
   document.getElementById("registration-form").style.display = "none";
   document.getElementById("login-form").style.display = "block";
   landRegBtn.style.display = "block";
