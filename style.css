@@ -53,9 +53,12 @@ header button {
 }
 .postCard{
   width:300px;
-  border: 1px solid black;
+  border: 2px solid rgb(49, 47, 47);
   overflow: hidden;
   position: relative;
+  border-radius: 2%;
+  background: rgb(182, 182, 182);
+  margin: 2px;
 }
 .postCard div img{
   width: 100%;
@@ -136,4 +139,14 @@ button{
   width: 110px;
   background: orange;
   border: 1px solid black;
+}
+#adminNav *{
+  height: 30px;
+  width: 110px;
+  background: orange;
+  border: 1px solid black;
+}
+#mainContainer{
+  display: flex;
+  flex-wrap: wrap;
 }

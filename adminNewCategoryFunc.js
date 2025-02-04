@@ -1,7 +1,6 @@
 import { mainContainer } from "./dom.js";
 import { ref, set, db,onValue } from "./appConfig.js";
 export function adminNewCategoryFunc() {
-  console.log("admin new cat func worked");
   
   mainContainer.innerHTML=""
   const currentCatForm = document.createElement("form");
@@ -37,8 +36,6 @@ export function adminNewCategoryFunc() {
       categoryListForm.id="CATEGORIES"
       mainContainer.append(categoryListForm)
       for(let key in data){
-          console.log(key);
-  
           const categoryContainer=document.createElement("div")
           categoryContainer.id=`categoryList`
           const categoryName=document.createElement("h5")

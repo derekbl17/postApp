@@ -2,6 +2,8 @@ import { ref, db, onValue,auth, set, push, database,remove,get} from "./appConfi
 import { categoryArray, mainContainer } from "./dom.js";
 
 export function createPostCard(post, subPostId, postId) {
+
+    
     const postCard = document.createElement("div");
     postCard.id = `postCard${post.category}`;
     postCard.className = "postCard";
@@ -19,7 +21,8 @@ export function createPostCard(post, subPostId, postId) {
 
     const favRef = ref(db, `users/${auth.currentUser.uid}/favorites/${subPostId}`);
 
-    favBtn.addEventListener("click", () => {
+    favBtn.addEventListener("click", (e) => {
+        e.preventDefault()
         get(favRef).then((snapshot) => {
             if (snapshot.exists()) {
                 remove(favRef)
@@ -107,7 +110,7 @@ export function createPostCard(post, subPostId, postId) {
 
     postBtnContainer.append(favBtn, commentBtn);
 
-    if (auth.currentUser.uid === postId) {
+    if (auth.currentUser.uid === postId || auth.currentUser.uid === "aVvE66CIedcPBP6cSa34Xv0mIa82") {
         const editBtn = document.createElement("button");
         editBtn.id = "editBtn";
         const editBtnIcon = document.createElement("img");

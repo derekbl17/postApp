@@ -30,6 +30,7 @@ export const authorizationFunc = (user) => {
             alert("Your account has been blocked.")
             return
           }
+          
         } else {
           console.log("No data");
         }
