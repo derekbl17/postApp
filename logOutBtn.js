@@ -14,6 +14,9 @@ logOutBtn.addEventListener("click", (e) => {
       landRegBtn.style.display = "block";
       logContainer.style.display = "flex";
     })
+    .then(()=>{
+      window.location.reload()
+    })
     .catch((error) => {
       console.log("error:", error);
     });

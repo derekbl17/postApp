@@ -3,15 +3,15 @@ import { ref, set, db,onValue } from "./appConfig.js";
 export function adminNewCategoryFunc() {
   
   mainContainer.innerHTML=""
-  const currentCatForm = document.createElement("form");
   const addCatForm = document.createElement("form");
+  addCatForm.id ="addCatForm"
   const label = document.createElement("label");
   label.innerText = "Category name";
   const input = document.createElement("input");
   const addCatBtn = document.createElement("button");
   addCatBtn.innerText = "Add new category";
   addCatForm.append(label, input, addCatBtn);
-  mainContainer.append(currentCatForm, addCatForm);
+  mainContainer.append(addCatForm);
   console.log("ADMIN NEW CATEGORY");
   
   addCatBtn.addEventListener("click",(e)=>{

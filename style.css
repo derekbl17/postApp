@@ -150,3 +150,6 @@ button{
   display: flex;
   flex-wrap: wrap;
 }
+#addCatForm{
+  width: 100%;
+}
